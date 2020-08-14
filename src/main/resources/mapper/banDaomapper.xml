@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.dao.banDao">
+    <select id="query" resultType="com.aaa.entity.ban">
+        select * from ban
+    </select>
+    <delete id="delete">
+        delete from ban where bid=#{bid}
+    </delete>
+    <insert id="add">
+        <selectKey keyProperty="bid" resultType="Integer" order="BEFORE">
+            select sep_ban.nextval from dual
+        </selectKey>
+        insert into ban (bid,bname) values (#{bid},#{bname})
+    </insert>
+    <update id="update">
+      update ban set tname=#{bname} where bid=#{bid}
+  </update>
+</mapper>
